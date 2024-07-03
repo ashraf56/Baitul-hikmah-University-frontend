@@ -16,6 +16,24 @@ const Mainlayout: React.FC = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+const items = [
+    {
+      key: '1',
+      icon: <UserOutlined />,
+      label: 'Home',
+    },
+    {
+      key: '2',
+      icon: <VideoCameraOutlined />,
+      label: 'About',
+    },
+    {
+      key: '3',
+      icon: <UploadOutlined />,
+      label: 'Create',
+    },
+  ]
+
   return (
     <Layout  style={{ height: '100vh' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -24,23 +42,7 @@ const Mainlayout: React.FC = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={['1']}
-          items={[
-            {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
-            },
-            {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
-            },
-            {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
-            },
-          ]}
+          items={items}
         />
       </Sider>
       <Layout>
