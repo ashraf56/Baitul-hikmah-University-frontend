@@ -37,7 +37,11 @@ const Mainlayout: React.FC = () => {
     return (
         <Layout style={{ height: '100vh' }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="demo-logo-vertical" />
+               
+               <div style={{textAlign:'center',paddingBottom:'5px'}}>
+                <h1 style={{color:'white'}}>BH University</h1>
+               </div>
+
                 <Menu
                     theme="dark"
                     mode="inline"
