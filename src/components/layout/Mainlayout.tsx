@@ -7,7 +7,7 @@ import {
     VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
@@ -19,19 +19,36 @@ const Mainlayout: React.FC = () => {
 
     const items = [
         {
-            key: '1',
+            key: 'home',
             icon: <UserOutlined />,
-            label: 'Home',
+            label: <NavLink to={'/'}>home</NavLink>,
         },
         {
-            key: '2',
+            key: 'about',
             icon: <VideoCameraOutlined />,
-            label: 'About',
+            label: <NavLink to={'/about'}>home</NavLink>,
         },
         {
-            key: '3',
+            key: 'admin',
             icon: <UploadOutlined />,
-            label: 'Create',
+            label: 'admin',
+            children: [
+                {
+                    key: 'home',
+                    icon: <UserOutlined />,
+                    label: <NavLink to={'/admin'}>admin dashboard</NavLink>,
+                },
+                {
+                    key: 'contact',
+                    icon: <VideoCameraOutlined />,
+                    label: <NavLink to={'/contact'}>home</NavLink>,
+                },
+                {
+                    key: 'createstudent',
+                    icon: <VideoCameraOutlined />,
+                    label: <NavLink to={'/admin/create-student'}>create student</NavLink>,
+                }
+            ]
         },
     ]
 
@@ -72,7 +89,7 @@ const Mainlayout: React.FC = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                    <Outlet/>
+                    <Outlet />
                 </Content>
             </Layout>
         </Layout>
