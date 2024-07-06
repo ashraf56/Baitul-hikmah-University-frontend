@@ -5,9 +5,19 @@ import {
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Outlet } from 'react-router-dom';
-import { adminSidebarItems } from '../../routes/admin.routes';
+import { adminPaths } from '../../routes/admin.routes';
+import DaynamicSidebar from '../../utills/DaynamicSidebar';
+import { facultypath } from '../../routes/faculty.routes';
+import { studentpath } from '../../routes/student.routes';
 
 const { Header, Sider, Content } = Layout;
+
+
+const userRole = {
+    ADMIN:'admin',
+    FACULTY:'faculty',
+    STUDENT:'student'
+}
 
 const Mainlayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -15,6 +25,22 @@ const Mainlayout: React.FC = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
+    const role = 'student'
+let sidebaritems ;
+    switch (role) {
+        case  userRole.ADMIN:
+            sidebaritems= DaynamicSidebar(adminPaths,userRole.ADMIN)
+            break;
+        case  userRole.FACULTY:
+            sidebaritems= DaynamicSidebar(facultypath,userRole.FACULTY)
+            break;
+        case  userRole.STUDENT:
+            sidebaritems= DaynamicSidebar(studentpath,userRole.STUDENT)
+            break;
+    
+        default:
+            break;
+    }
    
 
     return (
@@ -29,7 +55,7 @@ const Mainlayout: React.FC = () => {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    items={}
+                    items={sidebaritems}
                 />
             </Sider>
             <Layout>
