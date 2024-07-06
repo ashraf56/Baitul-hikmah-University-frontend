@@ -1,7 +1,7 @@
+import { NavLink } from "react-router-dom";
 import AdminDashboard from "../page/admin/AdminDashboard";
 import CreateStudent from "../page/admin/CreateStudent";
-import { NavLink } from "react-router-dom";
-import { TSidebarItem } from "../Types/alltypes";
+import { TSidebarItem } from "../Types";
 
 
 

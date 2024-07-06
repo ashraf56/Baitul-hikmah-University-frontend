@@ -29,7 +29,7 @@ const Mainlayout: React.FC = () => {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    items={adminSidebarItems}
+                    items={}
                 />
             </Sider>
             <Layout>
