@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { adminSidebarItems } from '../../routes/admin.routes';
 
 const { Header, Sider, Content } = Layout;
 
@@ -17,40 +15,7 @@ const Mainlayout: React.FC = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    const items = [
-        {
-            key: 'home',
-            icon: <UserOutlined />,
-            label: <NavLink to={'/'}>home</NavLink>,
-        },
-        {
-            key: 'about',
-            icon: <VideoCameraOutlined />,
-            label: <NavLink to={'/about'}>home</NavLink>,
-        },
-        {
-            key: 'admin',
-            icon: <UploadOutlined />,
-            label: 'admin',
-            children: [
-                {
-                    key: 'AdminDashboard',
-                    icon: <UserOutlined />,
-                    label: <NavLink to={'/admin/dashboard'}>admin dashboard</NavLink>,
-                },
-                {
-                    key: 'contact',
-                    icon: <VideoCameraOutlined />,
-                    label: <NavLink to={'/contact'}>contact</NavLink>,
-                },
-                {
-                    key: 'createstudent',
-                    icon: <VideoCameraOutlined />,
-                    label: <NavLink to={'/admin/create-student'}>create student</NavLink>,
-                }
-            ]
-        },
-    ]
+   
 
     return (
         <Layout style={{ height: '100vh' }}>
@@ -64,7 +29,7 @@ const Mainlayout: React.FC = () => {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    items={items}
+                    items={adminSidebarItems}
                 />
             </Sider>
             <Layout>
