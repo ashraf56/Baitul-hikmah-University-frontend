@@ -31,10 +31,7 @@ import { NavLink } from "react-router-dom";
 
 
 
-type TRoute = {
-    path: string;
-    element: ReactNode;
-};
+
 
 
 export const Adminroutes = adminPaths.reduce((acc: TRoute[], item) => {
