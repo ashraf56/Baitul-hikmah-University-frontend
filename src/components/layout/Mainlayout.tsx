@@ -34,14 +34,14 @@ const Mainlayout: React.FC = () => {
             label: 'admin',
             children: [
                 {
-                    key: 'home',
+                    key: 'AdminDashboard',
                     icon: <UserOutlined />,
-                    label: <NavLink to={'/admin'}>admin dashboard</NavLink>,
+                    label: <NavLink to={'/admin/dashboard'}>admin dashboard</NavLink>,
                 },
                 {
                     key: 'contact',
                     icon: <VideoCameraOutlined />,
-                    label: <NavLink to={'/contact'}>home</NavLink>,
+                    label: <NavLink to={'/contact'}>contact</NavLink>,
                 },
                 {
                     key: 'createstudent',
