@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import About from "../page/About";
 import Contact from "../page/Contact";
-import { Adminroutes } from "./admin.routes";
+import DynamicRoute from "../utills/DynamicRoute";
+import { adminPaths } from "./admin.routes";
 
 
 const router = createBrowserRouter([
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     {
         path: '/admin',
         element: <App />,
-        children:Adminroutes
+        children:DynamicRoute(adminPaths)
     }
 
 ])
