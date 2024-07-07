@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Button, Layout, Menu, theme } from 'antd';
+import { Button, Layout,  theme } from 'antd';
 import { Outlet } from 'react-router-dom';
+import Sidebar from './Sidebar';
+const { Header,  Content } = Layout;
 
-const { Header, Sider, Content } = Layout;
+
+
 
 const Mainlayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -17,39 +17,12 @@ const Mainlayout: React.FC = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    const items = [
-        {
-            key: '1',
-            icon: <UserOutlined />,
-            label: 'Home',
-        },
-        {
-            key: '2',
-            icon: <VideoCameraOutlined />,
-            label: 'About',
-        },
-        {
-            key: '3',
-            icon: <UploadOutlined />,
-            label: 'Create',
-        },
-    ]
+    
+   
 
     return (
         <Layout style={{ height: '100vh' }}>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
-
-                <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
-                    <h1 style={{ color: 'white' }}>BH </h1>
-                </div>
-
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    items={items}
-                />
-            </Sider>
+          <Sidebar></Sidebar>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }}>
                     <Button
@@ -72,7 +45,7 @@ const Mainlayout: React.FC = () => {
                         borderRadius: borderRadiusLG,
                     }}
                 >
-                    <Outlet/>
+                    <Outlet />
                 </Content>
             </Layout>
         </Layout>
