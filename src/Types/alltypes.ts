@@ -20,3 +20,9 @@ export type TUserPath = {
     element?: ReactNode;
     children?: TUserPath[];
   }
+
+
+  export type FieldType = {
+    id?: string;
+    password?: string;
+  };

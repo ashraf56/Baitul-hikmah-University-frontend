@@ -6,23 +6,26 @@ import DynamicRoute from "../utills/DynamicRoute";
 import { adminPaths } from "./admin.routes";
 import { facultypath } from "./faculty.routes";
 import { studentpath } from "./student.routes";
+import Login from "../page/Login";
 
 
 const router = createBrowserRouter([
 
     {
         path: '/',
-        element: <App />,
-        children: [
-            {
-                path: 'about',
-                element: <About />
-            },
-            {
-                path: 'contact',
-                element: <Contact />
-            },
-        ]
+        element: <App />
+    },
+    {
+        path: 'about',
+        element: <About />
+    },
+    {
+        path: 'contact',
+        element: <Contact />
+    },
+    {
+        path: 'login',
+        element: <Login />
     },
     {
         path: '/admin',
