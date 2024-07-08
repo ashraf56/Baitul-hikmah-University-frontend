@@ -11,13 +11,10 @@ const Login = () => {
 
     const dispatch = useAppDispatch()
     const { register, handleSubmit } = useForm()
-    const [login, { data, error }] = useLoginsMutation()
+    const [login,{error}] = useLoginsMutation()
 
-    console.log({ data });
-    console.log(error);
-
-
-
+  console.log(error);
+  
     const onsubmit = async (data: any) => {
 
         const userInfo = {
