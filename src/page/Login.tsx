@@ -6,6 +6,8 @@ import { useLoginsMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authslice";
 import { verifyToken } from "../utills/verifyToken";
+import { TUser } from "../Types";
+import { toast } from "sonner";
 
 const Login = () => {
 
@@ -16,14 +18,16 @@ const Login = () => {
 
   
     const onsubmit = async (data: any) => {
-
+  const toast1 = toast.loading('loading...')
         const userInfo = {
             id: data.id,
             password: data.password
         }
         const res = await login(userInfo).unwrap()
-        const user = verifyToken(res.data.accessToken)
+        const user = verifyToken(res.data.accessToken) as TUser
         dispatch(setUser({ user: user, token: res.data.accessToken }))
+        toast.success('Logged in', { id: toast1, duration: 2000 });
+
 
     }
     return (
