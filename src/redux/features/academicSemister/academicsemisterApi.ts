@@ -3,16 +3,15 @@ import { baseapi } from "../../api/baseApi";
 
   const academicSemisterApi = baseapi.injectEndpoints({
     endpoints: (build) => ({
-        getsemister: build.mutation({
-            query: (userInfo) => ({
+        getsemister: build.query({
+            query: () => ({
                 url: '/academicsemister',
                 method: "GET",
-                body: userInfo
             })
         })
     }),
 })
 
 
-export const { useGetsemisterMutation } = academicSemisterApi;
+export const { useGetsemisterQuery } = academicSemisterApi;
 
