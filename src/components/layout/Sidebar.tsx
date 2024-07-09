@@ -3,6 +3,8 @@ import DaynamicSidebar from "../../utills/DaynamicSidebar";
 import { adminPaths } from "../../routes/admin.routes";
 import { facultypath } from "../../routes/faculty.routes";
 import { studentpath } from "../../routes/student.routes";
+import { useAppSelector } from "../../redux/hook";
+import {  selectCurrentUser } from "../../redux/features/auth/authslice";
 
 const {  Sider  } = Layout;
 const userRole = {
@@ -11,9 +13,12 @@ const userRole = {
     STUDENT:'student'
 }
 const Sidebar = () => {
-    const role = 'student'
+    const user = useAppSelector(selectCurrentUser)
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   const userDBrole  = (user! as any).role
+    
 let sidebaritems ;
-    switch (role) {
+    switch (userDBrole) {
         case  userRole.ADMIN:
             sidebaritems= DaynamicSidebar(adminPaths,userRole.ADMIN)
             break;

@@ -11,6 +11,7 @@ import CreateStudent from "../page/admin/CreateStudent";
         path: 'dashboard',
         element: <AdminDashboard />,
     },
+   
     {
         name: 'User Management',
         children: [
