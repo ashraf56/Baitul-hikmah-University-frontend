@@ -11,13 +11,10 @@ const Login = () => {
 
     const dispatch = useAppDispatch()
     const { register, handleSubmit } = useForm()
-    const [login, { data, error }] = useLoginsMutation()
-
-    console.log({ data });
-    console.log(error);
+    const [login] = useLoginsMutation()
 
 
-
+  
     const onsubmit = async (data: any) => {
 
         const userInfo = {
@@ -26,7 +23,7 @@ const Login = () => {
         }
         const res = await login(userInfo).unwrap()
         const user = verifyToken(res.data.accessToken)
-        dispatch(setUser({ user: user, token: res.accessToken }))
+        dispatch(setUser({ user: user, token: res.data.accessToken }))
 
     }
     return (
