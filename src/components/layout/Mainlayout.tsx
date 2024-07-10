@@ -3,10 +3,10 @@ import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import { Button, Layout,  theme } from 'antd';
+import { Button, Layout, theme } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
-const { Header,  Content } = Layout;
+const { Header, Content } = Layout;
 
 
 
@@ -17,12 +17,12 @@ const Mainlayout: React.FC = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
-    
-   
+
+
 
     return (
         <Layout style={{ height: '100vh' }}>
-          <Sidebar></Sidebar>
+            <Sidebar></Sidebar>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }}>
                     <Button

@@ -26,3 +26,11 @@ export type TUserPath = {
     id?: string;
     password?: string;
   };
+
+
+  export type TUser = {
+    id: string;
+    role: string;
+    iat: number;
+    exp: number;
+  };
