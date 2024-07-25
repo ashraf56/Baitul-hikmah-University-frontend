@@ -33,7 +33,7 @@ const Login = () => {
         navigate(`/${user.role}/dashboard`)
       
       } catch (error) {
-        toast.error('Faild to log in', {  duration: 2000 });
+        toast.error('Faild to log in', { id:toast1, duration: 2000 });
       
       }
 
