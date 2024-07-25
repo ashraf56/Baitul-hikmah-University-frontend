@@ -1,7 +1,7 @@
 
 import { baseapi } from "../../api/baseApi";
 
-  const academicSemisterApi = baseapi.injectEndpoints({
+const academicSemisterApi = baseapi.injectEndpoints({
     endpoints: (build) => ({
         getsemister: build.query({
             query: () => ({

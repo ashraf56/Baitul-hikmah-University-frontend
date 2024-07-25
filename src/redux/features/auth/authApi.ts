@@ -1,6 +1,6 @@
 import { baseapi } from "../../api/baseApi";
 
-  const authApi = baseapi.injectEndpoints({
+const authApi = baseapi.injectEndpoints({
     endpoints: (build) => ({
         logins: build.mutation({
             query: (userInfo) => ({
@@ -13,5 +13,5 @@ import { baseapi } from "../../api/baseApi";
 })
 
 
-export const { useLoginsMutation} = authApi;
+export const { useLoginsMutation } = authApi;
 
