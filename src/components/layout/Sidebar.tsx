@@ -13,6 +13,7 @@ const userRole = {
     STUDENT: 'student'
 }
 const Sidebar = () => {
+    //geting user role from state 
     const user = useAppSelector(selectCurrentUser)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const userDBrole = (user! as any).role
