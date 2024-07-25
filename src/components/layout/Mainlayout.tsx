@@ -6,6 +6,8 @@ import {
 import { Button, Layout, theme } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import { useAppDispatch } from '../../redux/hook';
+import { logout } from '../../redux/features/auth/authslice';
 const { Header, Content } = Layout;
 
 
@@ -13,6 +15,7 @@ const { Header, Content } = Layout;
 
 const Mainlayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const dispatch = useAppDispatch()
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
@@ -35,6 +38,7 @@ const Mainlayout: React.FC = () => {
                             height: 64,
                         }}
                     />
+                    <Button onClick={()=>dispatch(logout())}>Logout</Button>
                 </Header>
                 <Content
                     style={{
