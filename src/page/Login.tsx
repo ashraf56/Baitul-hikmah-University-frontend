@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from "antd";
-
-import { useForm } from "react-hook-form";
+import { Button, Row } from "antd";
 import { useLoginsMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hook";
 import { setUser } from "../redux/features/auth/authslice";
@@ -9,11 +7,12 @@ import { verifyToken } from "../utills/verifyToken";
 import { TUser } from "../Types";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import CustomForm from "../components/form/CustomForm";
+import CustomInput from "../components/form/CustomInput";
 
 const Login = () => {
 
     const dispatch = useAppDispatch()
-    const { register, handleSubmit } = useForm()
     const [login] = useLoginsMutation()
 
  const navigate = useNavigate()
@@ -38,20 +37,23 @@ const Login = () => {
       }
 
     }
+
+    
+
     return (
-        <div style={{ width: '50%', margin: 'auto' }}>
-            <form onSubmit={handleSubmit(onsubmit)}>
-                <div>
-                    <label htmlFor="id">ID: </label>
-                    <input type="text" id="id" {...register('id')} />
-                </div>
-                <div>
-                    <label htmlFor="password">Password: </label>
-                    <input type="text" id="password" {...register('password')} />
-                </div>
+       
+            <Row  justify={'center'}  align={'middle'} style={{height:'100vh'}}>
+            <CustomForm onSubmit={onsubmit} >
+         
+                    <CustomInput type={'text'} name={'id'} label={'ID'}/>
+                
+             
+                    <CustomInput type={'text'} name={'password'} label={'Password'}/>
+                
                 <Button htmlType="submit">Login</Button>
-            </form>
-        </div>
+            </CustomForm>
+            </Row>
+       
     );
 };
 
