@@ -16,7 +16,7 @@ const CustomForm = ({ onSubmit, children}:TFormProps) => {
     
     return (
         <FormProvider {...methods}>
-        <Form onFinish={methods.handleSubmit(onSubmit)}>{children}</Form>
+        <Form layout="vertical" onFinish={methods.handleSubmit(onSubmit)}>{children}</Form>
       </FormProvider>
     );
 };
