@@ -6,6 +6,8 @@ import { monthOptions } from "../../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicSemesterSchema } from "../../../schemas/academicSemisterZod";
 import { useCreateAsemisterMutation } from "../../../redux/features/academicSemister/academicsemisterApi";
+import { toast } from "sonner";
+import { TResponse } from "../../../Types";
 
 export const semesterOptions = [
     { value: '01', label: 'Autumn' },
@@ -21,7 +23,7 @@ const yearOptons = [0, 1, 2, 3, 4, 5, 6].map(y => ({
 
 const Create_Academic_semister = () => {
 
-const [createAsemister] = useCreateAsemisterMutation()
+    const [createAsemister] = useCreateAsemisterMutation()
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         //taking label dynamically
@@ -35,7 +37,20 @@ const [createAsemister] = useCreateAsemisterMutation()
             endMonth: data.endMonth
 
         }
-        console.log(semistardata);
+        const toastId = toast.loading('Creating...');
+
+        try {
+            console.log(semistardata);
+            const res = await createAsemister(semistardata) as TResponse
+            if (res.error) {
+                toast.error(res.error?.data?.message, { id: toastId })
+            } else {
+                toast.success("Semester created", { id: toastId })
+            }
+
+        } catch (error) {
+            toast.error('something error', { id: toastId })
+        }
 
     }
     return (

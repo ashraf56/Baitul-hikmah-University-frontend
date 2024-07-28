@@ -2,6 +2,7 @@
 import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authslice";
+import { toast } from "sonner";
 
 
 const basequery = fetchBaseQuery({
@@ -23,6 +24,10 @@ DefinitionType
 >  = async (args, api, extraOptions): Promise<any> => {
     let result = await basequery(args, api, extraOptions)
     console.log(result);
+if (result.error?.status === 404) {
+    toast.error(result.error.data.message)
+}
+
     if (result.error?.status === 401) {
         const res = await fetch('http://localhost:5000/api/v1/auth/refresh-token', {
             method: "POST",
