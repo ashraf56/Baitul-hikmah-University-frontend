@@ -87,7 +87,7 @@ const Academic_semister = () => {
         },
     ];
 
-    const onChange: TableProps<Ttabledata>['onChange'] = (pagination, filters, sorter, extra) => {
+    const onChange: TableProps<Ttabledata>['onChange'] = (_pagination, filters, _sorter, extra) => {
 
         if (extra.action === 'filter') {
 
