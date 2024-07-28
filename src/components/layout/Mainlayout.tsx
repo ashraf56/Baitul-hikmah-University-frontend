@@ -25,13 +25,13 @@ const Mainlayout: React.FC = () => {
 
     return (
         <Layout >
-            <Sidebar></Sidebar>
+            <Sidebar ></Sidebar>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }}>
                     <Button
                         type="text"
                         icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        onClick={() => setCollapsed(!collapsed)}
+                        onClick={() => setCollapsed(collapsed)}
                         style={{
                             fontSize: '16px',
                             width: 64,

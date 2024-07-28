@@ -2,6 +2,8 @@ import AdminDashboard from "../page/admin/AdminDashboard";
 import CreateStudent from "../page/admin/CreateStudent";
 import Academic_semister from "../page/admin/AcademicManegment/Academic_semister";
 import Create_Academic_semister from "../page/admin/AcademicManegment/Create_Academic_semister";
+import All_AcademicFaculty from "../page/admin/AcademicManegment/AcademicFaculty/All_AcademicFaculty";
+import CreateAcademicFaculty from "../page/admin/AcademicManegment/AcademicFaculty/CreateAcademicFaculty";
 
 
 
@@ -25,6 +27,16 @@ export const adminPaths = [
                 name: 'Acamdemic semister',
                 path: 'academic-semister',
                 element: <Academic_semister />,
+            },
+            {
+                name: 'Add Acamdemic Faculty',
+                path: 'create-academic-faculty',
+                element: <CreateAcademicFaculty />,
+            },
+            {
+                name: 'Acamdemic Faculty',
+                path: 'academic-faculty',
+                element: <All_AcademicFaculty />,
             }
         ]
     },
