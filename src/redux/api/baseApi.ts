@@ -23,7 +23,6 @@ BaseQueryApi,
 DefinitionType
 >  = async (args, api, extraOptions): Promise<any> => {
     let result = await basequery(args, api, extraOptions)
-    console.log(result);
 if (result.error?.status === 404) {
     toast.error(result.error.data.message)
 }

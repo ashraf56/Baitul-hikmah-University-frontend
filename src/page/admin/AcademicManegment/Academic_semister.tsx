@@ -1,19 +1,20 @@
 import { Table, TableColumnsType, TableProps } from "antd";
 import { useGetsemisterQuery } from "../../../redux/features/academicSemister/academicsemisterApi";
-import { TAcademicSemester } from "../../../Types";
+import { TAcademicSemester, TQueryParam } from "../../../Types";
+import { useState } from "react";
 
-type Ttabledata= Pick<TAcademicSemester,'name'|'year'|'startMonth'|'endMonth'>
+type Ttabledata = Pick<TAcademicSemester, 'name' | 'year' | 'startMonth' | 'endMonth'>
 
 
 
 
 const Academic_semister = () => {
-    const { data,isLoading } = useGetsemisterQuery([
-        {name:'year',value:'2024'}
-    ])
-    console.log(data);
-    const tableInfo = data?.data?.map(({ _id, name, startMonth, endMonth, year })=>(
-        { key:_id,
+    const [params, Setparams] = useState<TQueryParam[] | undefined>(undefined)
+
+    const { data, isLoading, isFetching } = useGetsemisterQuery(params)
+    const tableInfo = data?.data?.map(({ _id, name, startMonth, endMonth, year }) => (
+        {
+            key: _id,
             name,
             startMonth,
             endMonth,
@@ -21,9 +22,6 @@ const Academic_semister = () => {
         }
     ))
 
-if (isLoading) {
-    return <p>Loading....</p>
-}
 
     const columns: TableColumnsType<Ttabledata> = [
         {
@@ -31,42 +29,22 @@ if (isLoading) {
             dataIndex: 'name',
             filters: [
                 {
-                    text: 'Joe',
-                    value: 'Joe',
+                    text: 'Fall',
+                    value: 'Fall'
                 },
                 {
-                    text: 'Category 1',
-                    value: 'Category 1',
-                    children: [
-                        {
-                            text: 'Yellow',
-                            value: 'Yellow',
-                        },
-                        {
-                            text: 'Pink',
-                            value: 'Pink',
-                        },
-                    ],
+                    text: 'Autumn',
+                    value: 'Autumn'
                 },
                 {
-                    text: 'Category 2',
-                    value: 'Category 2',
-                    children: [
-                        {
-                            text: 'Green',
-                            value: 'Green',
-                        },
-                        {
-                            text: 'Black',
-                            value: 'Black',
-                        },
-                    ],
+                    text: 'Summar',
+                    value: 'Summar'
                 },
             ],
-            // filterMode: 'tree',
-            // filterSearch: true,
-            // onFilter: (value, record) => record.name.includes(value as string),
-            // width: '30%',
+            filterMode: 'tree',
+            filterSearch: true,
+            onFilter: (value, record) => record.name.includes(value as string),
+            width: '30%',
         },
         {
             title: 'Year',
@@ -108,12 +86,29 @@ if (isLoading) {
             // width: '40%',
         },
     ];
-    
-const onChange: TableProps<Ttabledata>['onChange'] = (pagination, filters, sorter, extra) => {
-    console.log('params', pagination, filters, sorter, extra);
-};
+
+    const onChange: TableProps<Ttabledata>['onChange'] = (pagination, filters, sorter, extra) => {
+
+        if (extra.action === 'filter') {
+
+            const Querys: TQueryParam[] = []
+
+            filters.name?.forEach(n => (
+                Querys.push({ name: 'name', value: n })
+            ))
+            Setparams(Querys)
+        }
+
+
+    };
+
+    if (isLoading) {
+        return <p>Loading....</p>
+    }
+
+
     return (
-        <Table columns={columns} dataSource={tableInfo} onChange={onChange} />
+        <Table loading={isFetching} columns={columns} dataSource={tableInfo} onChange={onChange} />
     );
 };
 

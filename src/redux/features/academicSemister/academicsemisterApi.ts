@@ -1,5 +1,5 @@
 
-import { TAcademicSemester, TResponseRedux } from "../../../Types";
+import { TAcademicSemester, TQueryParam, TResponseRedux } from "../../../Types";
 import { baseapi } from "../../api/baseApi";
 
 const academicSemisterApi = baseapi.injectEndpoints({
@@ -8,7 +8,13 @@ const academicSemisterApi = baseapi.injectEndpoints({
             query: (args) => {
                const params=new URLSearchParams()
 
-             params.append(args[0].name,args[0].value)
+
+               if (args) {
+                args.forEach((element:TQueryParam) => {
+                    params.append(element.name,element.value as string)
+                });
+               }
+             
                return   {
                 url: '/academicsemister',
                 method: "GET",
