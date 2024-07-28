@@ -9,7 +9,13 @@ export const semesterOptions = [
     { value: '03', label: 'Fall' },
 ];
 
+const currentYear = new Date().getFullYear()
+console.log(currentYear);
 
+const yearOptons = [0,1,2,3,4,5,6].map(y=>({
+    value:String(currentYear+y),
+    label:String(currentYear+y)
+}))
 const Create_Academic_semister = () => {
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         //taking label dynamically
@@ -17,7 +23,8 @@ const Create_Academic_semister = () => {
         const name = semesterOptions[Number(data.name) - 1]?.label
         const semistardata = {
             name,
-            code: data.name
+            code: data.name,
+            year: data.year
 
         }
         console.log(semistardata);
@@ -30,6 +37,7 @@ const Create_Academic_semister = () => {
                     <CustomForm
                         onSubmit={onSubmit} >
                         <CustomSelect label="Name" name="name" options={semesterOptions} />
+                        <CustomSelect label="Year" name="year" options={yearOptons} />
                         <Button htmlType="submit">Submit</Button>
                     </CustomForm>
                 </Col>

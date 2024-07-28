@@ -24,7 +24,7 @@ const Mainlayout: React.FC = () => {
 
 
     return (
-        <Layout style={{ height: '100vh' }}>
+        <Layout >
             <Sidebar></Sidebar>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }}>

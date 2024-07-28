@@ -34,7 +34,7 @@ const Sidebar = () => {
             break;
     }
     return (
-        <Sider trigger={null} collapsible  >
+        <Sider trigger={null}   style={{height:'100vh', position:'sticky',top:'0', left:'0'}} >
 
             <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
                 <h1 style={{ color: 'white' }}>BH </h1>
