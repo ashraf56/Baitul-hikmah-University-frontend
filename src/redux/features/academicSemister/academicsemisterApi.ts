@@ -5,10 +5,17 @@ import { baseapi } from "../../api/baseApi";
 const academicSemisterApi = baseapi.injectEndpoints({
     endpoints: (build) => ({
         getsemister: build.query({
-            query: () => ({
+            query: (args) => {
+               const params=new URLSearchParams()
+
+             params.append(args[0].name,args[0].value)
+               return   {
                 url: '/academicsemister',
                 method: "GET",
-            }),
+                params:params
+            } 
+            }
+        ,
             transformResponse:(response:TResponseRedux<TAcademicSemester[]>)=>{
               
                 return {

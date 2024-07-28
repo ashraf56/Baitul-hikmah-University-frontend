@@ -8,7 +8,9 @@ type Ttabledata= Pick<TAcademicSemester,'name'|'year'|'startMonth'|'endMonth'>
 
 
 const Academic_semister = () => {
-    const { data } = useGetsemisterQuery(undefined)
+    const { data,isLoading } = useGetsemisterQuery([
+        {name:'year',value:'2024'}
+    ])
     console.log(data);
     const tableInfo = data?.data?.map(({ _id, name, startMonth, endMonth, year })=>(
         { key:_id,
@@ -18,6 +20,11 @@ const Academic_semister = () => {
             year,
         }
     ))
+
+if (isLoading) {
+    return <p>Loading....</p>
+}
+
     const columns: TableColumnsType<Ttabledata> = [
         {
             title: 'Name',
