@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Flex } from "antd";
 import CustomForm from "../../../components/form/CustomForm";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -41,7 +42,7 @@ const Create_Academic_semister = () => {
 
         try {
             console.log(semistardata);
-            const res = await createAsemister(semistardata) as TResponse
+            const res = await createAsemister(semistardata) as TResponse<any>
             if (res.error) {
                 toast.error(res.error?.data?.message, { id: toastId })
             } else {

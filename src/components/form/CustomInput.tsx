@@ -11,7 +11,6 @@ type TInputProps = {
 const CustomInput = ({label,name,type}:TInputProps) => {
     return (
         <div style={{ marginBottom: '20px' }}>
-      {label ? label : null}
       <Controller
         name={name}
         render={({ field }) =>
