@@ -8,10 +8,17 @@ const academicSemisterApi = baseapi.injectEndpoints({
                 url: '/academicsemister',
                 method: "GET",
             })
+        }),
+        createAsemister: build.mutation({
+            query: (data) => ({
+                url: '/academicsemister/create-semister',
+                method: "POST",
+                body:data
+            })
         })
     }),
 })
 
 
-export const { useGetsemisterQuery } = academicSemisterApi;
+export const { useGetsemisterQuery, useCreateAsemisterMutation } = academicSemisterApi;
 

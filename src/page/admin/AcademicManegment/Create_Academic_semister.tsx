@@ -5,6 +5,7 @@ import CustomSelect from "../../../components/form/CustomSelect";
 import { monthOptions } from "../../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicSemesterSchema } from "../../../schemas/academicSemisterZod";
+import { useCreateAsemisterMutation } from "../../../redux/features/academicSemister/academicsemisterApi";
 
 export const semesterOptions = [
     { value: '01', label: 'Autumn' },
@@ -19,6 +20,9 @@ const yearOptons = [0, 1, 2, 3, 4, 5, 6].map(y => ({
 }))
 
 const Create_Academic_semister = () => {
+
+const [createAsemister] = useCreateAsemisterMutation()
+
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         //taking label dynamically
 
