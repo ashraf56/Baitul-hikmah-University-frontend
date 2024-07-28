@@ -3,6 +3,8 @@ import CustomForm from "../../../components/form/CustomForm";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import CustomSelect from "../../../components/form/CustomSelect";
 import { monthOptions } from "../../../constants/global";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { academicSemesterSchema } from "../../../schemas/academicSemisterZod";
 
 export const semesterOptions = [
     { value: '01', label: 'Autumn' },
@@ -25,8 +27,8 @@ const Create_Academic_semister = () => {
             name,
             code: data.name,
             year: data.year,
-            startMonth:data.startMonth,
-            endMonth:data.endMonth
+            startMonth: data.startMonth,
+            endMonth: data.endMonth
 
         }
         console.log(semistardata);
@@ -37,7 +39,7 @@ const Create_Academic_semister = () => {
             <Flex justify="center" align="center">
                 <Col span={6}>
                     <CustomForm
-                        onSubmit={onSubmit} >
+                        onSubmit={onSubmit} resolver={zodResolver(academicSemesterSchema)}  >
                         <CustomSelect placeholder='Select semister' label="Name" name="name" options={semesterOptions} />
                         <CustomSelect placeholder="Select year" label="Year" name="year" options={yearOptons} />
                         <CustomSelect placeholder="Select StartMonth" label="StartMonth" name="startMonth" options={monthOptions} />
