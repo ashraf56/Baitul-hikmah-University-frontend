@@ -4,9 +4,10 @@ import { Controller } from 'react-hook-form';
 type TPHSelectProps = {
     label: string;
     name: string;
+    placeholder:string;
     options: { value: string; label: string; disabled?: boolean }[];
   };
-const CustomSelect = ({ label, name, options }: TPHSelectProps) => {
+const CustomSelect = ({ label, name, options, placeholder }: TPHSelectProps) => {
     return (
         <div>
               <Controller
@@ -16,6 +17,7 @@ const CustomSelect = ({ label, name, options }: TPHSelectProps) => {
           <Select
             style={{ width: '100%' }}
             {...field}
+            placeholder={placeholder}
             options={options}
             size="large"
           />
