@@ -1,22 +1,25 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Flex } from "antd";
 import CustomForm from "../../../../components/form/CustomForm";
 import CustomInput from "../../../../components/form/CustomInput";
 import { toast } from "sonner";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useAddAcademicFacultyMutation } from "../../../../redux/features/academicFaculty/academicFaculty";
+import { TResponse } from "../../../../Types";
 
 const CreateAcademicFaculty = () => {
-
+const [addAcademicFaculty]= useAddAcademicFacultyMutation()
 
 const onSubmit: SubmitHandler<FieldValues> = async (data)=>{
     const toastId = toast.loading('Creating...');
 
     try {
-        console.log(data);
-        // if (res.error) {
-        //     toast.error(res.error?.data?.message, { id: toastId })
-        // } else {
-        //     toast.success("Semester created", { id: toastId })
-        // }
+        const res = await addAcademicFaculty(data) as TResponse<any>
+        if (res.error) {
+            toast.error(res.error?.data?.message, { id: toastId })
+        } else {
+            toast.success("Academic Faculty created", { id: toastId })
+        }
 
     } catch (error) {
         toast.error('something error', { id: toastId })
