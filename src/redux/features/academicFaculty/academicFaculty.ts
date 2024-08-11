@@ -9,7 +9,13 @@ const academicFacultyApi = baseapi.injectEndpoints({
                 method: 'POST',
                 body: data
             })
-        })
+        }),
+        GetAcademicFaculty: build.query({
+            query: () => ({
+                url: '/academicfaculty',
+                method: 'GET',
+            })
+        }),
 
     })
 
@@ -17,4 +23,4 @@ const academicFacultyApi = baseapi.injectEndpoints({
 
 
 
-export const { useAddAcademicFacultyMutation } = academicFacultyApi
+export const { useAddAcademicFacultyMutation,useGetAcademicFacultyQuery } = academicFacultyApi
