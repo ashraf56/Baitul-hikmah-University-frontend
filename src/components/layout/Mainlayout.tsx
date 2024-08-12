@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-} from '@ant-design/icons';
+
 import { Button, Layout, theme } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -14,7 +10,6 @@ const { Header, Content } = Layout;
 
 
 const Mainlayout: React.FC = () => {
-    const [collapsed, setCollapsed] = useState(false);
     const dispatch = useAppDispatch()
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -28,16 +23,7 @@ const Mainlayout: React.FC = () => {
             <Sidebar ></Sidebar>
             <Layout>
                 <Header style={{ padding: 0, background: colorBgContainer }}>
-                    <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        onClick={() => setCollapsed(collapsed)}
-                        style={{
-                            fontSize: '16px',
-                            width: 64,
-                            height: 64,
-                        }}
-                    />
+                   
                     <Button onClick={()=>dispatch(logout())}>Logout</Button>
                 </Header>
                 <Content

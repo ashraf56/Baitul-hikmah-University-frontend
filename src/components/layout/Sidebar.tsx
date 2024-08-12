@@ -33,20 +33,24 @@ const Sidebar = () => {
         default:
             break;
     }
-    return (
-        <Sider trigger={null} collapsible   style={{height:'100vh', position:'sticky',top:'0', left:'0' }} >
-
-            <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
+    return (   
+        <Sider
+        breakpoint="lg"
+        collapsedWidth="0"
+        onBreakpoint={(broken) => {
+          console.log(broken);
+        }}
+        onCollapse={(collapsed, type) => {
+          console.log(collapsed, type);
+        }}
+        style={{height:'100vh', position:'sticky',top:'0', left:'0' }}
+      >
+          <div style={{ textAlign: 'center', paddingBottom: '5px' }}>
                 <h1 style={{ color: 'white' }}>BH </h1>
             </div>
-
-            <Menu
-                theme="dark"
-                mode="inline"
-                defaultSelectedKeys={['1']}
-                items={sidebaritems}
-            />
-        </Sider>
+        <div className="demo-logo-vertical" />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={sidebaritems} />
+      </Sider>
     );
 };
 
