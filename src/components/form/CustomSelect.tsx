@@ -4,7 +4,7 @@ import { Controller } from 'react-hook-form';
 type TPHSelectProps = {
     label: string;
     name: string;
-    placeholder:string;
+    placeholder?:string;
     options: { value: string; label: string; disabled?: boolean }[];
   };
 const CustomSelect = ({ label, name, options, placeholder }: TPHSelectProps) => {
