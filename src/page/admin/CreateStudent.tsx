@@ -6,6 +6,7 @@ import CustomInput from "../../components/form/CustomInput";
 import CustomSelect from "../../components/form/CustomSelect";
 import { genderOptions } from "../../constants/global";
 import { useGetsemisterQuery } from "../../redux/features/academicSemister/academicsemisterApi";
+import { useGetAllAcademicDepartmentQuery } from "../../redux/features/academicDepartment/academicDepartmentApi";
 
 const CreateStudent = () => {
 
@@ -18,6 +19,13 @@ const semesterOptions = Asemester?.data?.map((item) => ({
     label: `${item.name} ${item.year}`,
   }));
 
+  const {data:Adep}= useGetAllAcademicDepartmentQuery(undefined)
+
+  const DepartmentOptions = Adep?.data?.map((item: { _id: any; name: any; }) => ({
+    value: item._id,
+    label: item.name
+  }));
+
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 
 
@@ -27,14 +35,13 @@ const semesterOptions = Asemester?.data?.map((item) => ({
             password: 'student123',
             student: data,
         };
-    console.log(studentData);
+   
     
         const formData = new FormData();
 
         formData.append('data', JSON.stringify(studentData));
         formData.append('file', data.profileImg);
 
-console.log(data.profileImg);
 
 
     }
@@ -95,7 +102,7 @@ console.log(data.profileImg);
                             options={semesterOptions} placeholder="Select Admission Semester" ></CustomSelect>
                             </Col>
                             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                            <CustomSelect label="academicDepartment" name="academicDepartment" options={genderOptions} placeholder="Select academicDepartment" ></CustomSelect>
+                            <CustomSelect label="Academic Department" name="academicDepartment" options={DepartmentOptions} placeholder="Select academicDepartment" ></CustomSelect>
                             </Col>
                         </Row>
                         <Button htmlType="submit">Submit</Button>
