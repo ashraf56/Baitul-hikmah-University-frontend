@@ -1,13 +1,13 @@
 import { Form, Select } from 'antd';
 import { Controller } from 'react-hook-form';
 
-type TPHSelectProps = {
+type TCustomSelectProps = {
     label: string;
     name: string;
     placeholder?:string;
-    options: { value: string; label: string; disabled?: boolean }[];
+    options?: { value: string; label: string; disabled?: boolean }[];
   };
-const CustomSelect = ({ label, name, options, placeholder }: TPHSelectProps) => {
+const CustomSelect = ({ label, name, options, placeholder }: TCustomSelectProps) => {
     return (
         <div>
               <Controller

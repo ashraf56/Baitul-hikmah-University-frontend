@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Divider, Form, Input, Row } from "antd";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import CustomForm from "../../components/form/CustomForm";
@@ -9,10 +10,10 @@ import { useGetsemisterQuery } from "../../redux/features/academicSemister/acade
 const CreateStudent = () => {
 
 
-const {data:Afaculty, isLoading:afLoading} = useGetsemisterQuery(undefined)
+const {data:Asemester} = useGetsemisterQuery(undefined)
 
 
-const semesterOptions = Afaculty?.data?.map((item: { _id: string , name: string, year: any }) => ({
+const semesterOptions = Asemester?.data?.map((item) => ({
     value: item._id,
     label: `${item.name} ${item.year}`,
   }));
@@ -90,7 +91,8 @@ console.log(data.profileImg);
                         <Divider>Academic Info </Divider>
                         <Row gutter={8}>
                             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                            <CustomSelect label="Admission Semester" name="admissionSemester" options={semesterOptions} placeholder="Select Admission Semester" ></CustomSelect>
+                            <CustomSelect label="Admission Semester" name="admissionSemester" 
+                            options={semesterOptions} placeholder="Select Admission Semester" ></CustomSelect>
                             </Col>
                             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                             <CustomSelect label="academicDepartment" name="academicDepartment" options={genderOptions} placeholder="Select academicDepartment" ></CustomSelect>
