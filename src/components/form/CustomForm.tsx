@@ -20,9 +20,9 @@ const CustomForm = ({ onSubmit, children, resolver }: TFormProps) => {
 
   const methods = useForm(formConfig)
 
-  const submit:SubmitHandler<FieldValues> = (data) => {
-  onSubmit(data) ;
-  methods.reset()
+  const submit: SubmitHandler<FieldValues> = (data) => {
+    onSubmit(data);
+    methods.reset()
   }
 
   return (
