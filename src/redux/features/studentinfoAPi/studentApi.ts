@@ -4,7 +4,7 @@ import { baseapi } from "../../api/baseApi";
 
 const studentApi = baseapi.injectEndpoints({
     endpoints:(build)=>({
-        crateStudent: build.mutation({
+        AddStudent: build.mutation({
             query:(data)=>({
                 url:'/users/create-student',
                 method:"POST",
@@ -15,4 +15,4 @@ const studentApi = baseapi.injectEndpoints({
 })
 
 
-export const {useCrateStudentMutation}=studentApi
+export const {useAddStudentMutation}=studentApi

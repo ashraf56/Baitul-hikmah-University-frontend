@@ -14,7 +14,7 @@ export const monthNames = [
   ];
 
 
-  export const genders = ['Male', 'Female'];
+  export const genders = ['male', 'female'];
 
 
   

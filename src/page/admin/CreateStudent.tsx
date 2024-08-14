@@ -7,9 +7,11 @@ import CustomSelect from "../../components/form/CustomSelect";
 import { genderOptions } from "../../constants/global";
 import { useGetsemisterQuery } from "../../redux/features/academicSemister/academicsemisterApi";
 import { useGetAllAcademicDepartmentQuery } from "../../redux/features/academicDepartment/academicDepartmentApi";
+import { useAddStudentMutation } from "../../redux/features/studentinfoAPi/studentApi";
+import { toast } from "sonner";
 
 const CreateStudent = () => {
-
+ const [AddStudent] = useAddStudentMutation()
 
 const {data:Asemester} = useGetsemisterQuery(undefined)
 
@@ -26,7 +28,7 @@ const semesterOptions = Asemester?.data?.map((item) => ({
     label: item.name
   }));
 
-    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const onSubmit: SubmitHandler<FieldValues> =  async(data) => {
 
 
 
@@ -35,14 +37,21 @@ const semesterOptions = Asemester?.data?.map((item) => ({
             password: 'student123',
             student: data,
         };
-   
-    
-        const formData = new FormData();
-
-        formData.append('data', JSON.stringify(studentData));
+   const formData = new FormData();
+  formData.append('data', JSON.stringify(studentData));
         formData.append('file', data.profileImg);
+  const toastLoder = toast.loading('creating....')
+        try {
+          const res = await AddStudent(formData) 
+          if (res) {
+            toast.success('Student created successFully',{id:toastLoder})
+          }  
+        } catch (error) {
+            toast.error(`${error}`,{id:toastLoder})
+        }
+        
 
-
+    
 
     }
     return (
