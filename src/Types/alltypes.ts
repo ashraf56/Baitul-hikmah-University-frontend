@@ -81,3 +81,32 @@ export type TQueryParam = {
   name: string;
   value: boolean | React.Key;
 };
+
+
+
+
+
+export type studentInterface = {
+  gardian: Gardian
+  _id: string
+  id: string
+  email: string
+  name: string
+  userid: string
+  adress: string
+  contactnumber: string
+  country: string
+  gender: string
+  admissionSemester: string
+  academicDepartment: string
+  academicFaculty: string
+  isDeleted: boolean
+  profileImg: string
+  createdAt: string
+  updatedAt: string
+}
+
+export type Gardian = {
+  fathersName: string
+  fathersNumber: string
+}

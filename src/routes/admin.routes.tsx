@@ -6,6 +6,7 @@ import All_AcademicFaculty from "../page/admin/AcademicManegment/AcademicFaculty
 import CreateAcademicFaculty from "../page/admin/AcademicManegment/AcademicFaculty/CreateAcademicFaculty";
 import CreateAdepartment from "../page/admin/AcademicManegment/AcademicDepartment/CreateAdepartment";
 import AllAcademicDepartment from "../page/admin/AcademicManegment/AcademicDepartment/AllAcademicDepartment";
+import Students from "../page/admin/AcademicManegment/Usermanagment/Students";
 
 
 
@@ -62,9 +63,9 @@ export const adminPaths = [
                 element: <CreateStudent />,
             },
             {
-                name: 'Create Member',
-                path: 'create-member',
-                element: <CreateStudent />,
+                name: 'Students',
+                path: 'students',
+                element: <Students />,
             },
         ],
     },
