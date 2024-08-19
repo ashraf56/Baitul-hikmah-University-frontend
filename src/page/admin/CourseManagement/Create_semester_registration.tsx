@@ -7,8 +7,14 @@ import CustomDatePicker from "../../../components/form/CustomDatePicker";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { semesterStatusOptions } from "../../../constants/global";
 import CustomInput from "../../../components/form/CustomInput";
+import { useAddSemeterRegistrationMutation } from "../../../redux/features/semesterRegistration/semesterRegistrationAPI";
+import { toast } from "sonner";
+import { TResponse } from "../../../Types";
 
 const Create_semester_registration = () => {
+
+const [addSemeterRegistration]= useAddSemeterRegistrationMutation()
+
     const {data:Asemester} = useGetsemisterQuery(undefined)
 
 
@@ -31,20 +37,20 @@ const semesterOptions = Asemester?.data?.map((item) => ({
 
     console.log(semistarRegdata);
     
-    // const toastId = toast.loading('Creating...');
+    const toastId = toast.loading('Creating...');
 
-    // try {
-    //     console.log(semistardata);
-    //     const res = await createAsemister(semistardata) as TResponse<any>
-    //     if (res.error) {
-    //         toast.error(res.error?.data?.message, { id: toastId })
-    //     } else {
-    //         toast.success("Semester created", { id: toastId })
-    //     }
+    try {
+       
+        const res = await addSemeterRegistration(semistarRegdata) as TResponse<any>
+        if (res.error) {
+            toast.error(res.error?.data?.message, { id: toastId })
+        } else {
+            toast.success("Semester created", { id: toastId })
+        }
 
-    // } catch (error) {
-    //     toast.error('something error', { id: toastId })
-    // }
+    } catch (error) {
+        toast.error('something error', { id: toastId })
+    }
 
 }
     return (
