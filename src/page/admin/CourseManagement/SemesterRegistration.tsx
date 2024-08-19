@@ -1,52 +1,66 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Dropdown, Table, TableColumnsType, Tag } from "antd";
-import { useGetRegisteredsemesterQuery } from "../../../redux/features/semesterRegistration/semesterRegistrationAPI";
+import { useGetRegisteredsemesterQuery, useUpdateRegisteredSemesterMutation } from "../../../redux/features/semesterRegistration/semesterRegistrationAPI";
 import { useState } from "react";
+import moment from "moment";
 
 
 
 
 const items = [
     {
-      label: 'Upcoming',
-      key: 'UPCOMING',
+        label: 'Upcoming',
+        key: 'UPCOMING',
     },
     {
-      label: 'Ongoing',
-      key: 'ONGOING',
+        label: 'Ongoing',
+        key: 'ONGOING',
     },
     {
-      label: 'Ended',
-      key: 'ENDED',
+        label: 'Ended',
+        key: 'ENDED',
     },
-  ];
-  
+];
+
 
 const SemesterRegistration = () => {
     const [semesterId, setSemesterId] = useState('');
     console.log(semesterId);
-    
-const {data, isLoading}= useGetRegisteredsemesterQuery(undefined)
+ const [updateRegisteredSemester] = useUpdateRegisteredSemesterMutation()
+    const { data:regSem, isLoading } = useGetRegisteredsemesterQuery(undefined)
 
-    const tableInfo = data?.data?.map(({ _id, academicSemester, status, startDate, endDate }:any) => (
+    const tableInfo = regSem?.data?.map(({ _id, academicSemester, status, startDate, endDate }: any) => (
         {
             key: _id,
-           name: `${academicSemester.name} ${academicSemester.year}`,
-           startDate,
-           endDate,
-           status
+            name: `${academicSemester.name} ${academicSemester.year}`,
+            startDate: moment(new Date(startDate)).format('MMMM'),
+            endDate: moment(new Date(endDate)).format('MMMM'),
+            status
         }
     ))
+
+    const handleStatusUpdate = (data) => {
+        const updateData = {
+          id: semesterId,
+          data: {
+            status: data.key,
+          },
+        };
+    
+        updateRegisteredSemester(updateData);
+      };
+
     const menuProps = {
         items,
-       
-      };
+        onClick: handleStatusUpdate,
+
+    };
 
     const columns: TableColumnsType<any> = [
         {
             title: 'Name',
             dataIndex: 'name',
-           
+
         },
         {
             title: 'Status',
@@ -54,22 +68,22 @@ const {data, isLoading}= useGetRegisteredsemesterQuery(undefined)
             render: (item) => {
                 let color;
                 if (item === 'UPCOMING') {
-                  color = 'blue';
+                    color = 'blue';
                 }
                 if (item === 'ONGOING') {
-                  color = 'green';
+                    color = 'green';
                 }
                 if (item === 'ENDED') {
-                  color = 'red';
+                    color = 'red';
                 }
-        
+
                 return <Tag color={color}>{item}</Tag>;
-              },
+            },
         },
         {
             title: 'Start Date',
             dataIndex: 'startDate',
-           
+
         },
         {
             title: 'End Date',
@@ -79,19 +93,19 @@ const {data, isLoading}= useGetRegisteredsemesterQuery(undefined)
             title: 'Action',
             key: 'x',
             render: (item) => {
-              return (
-                <Dropdown menu={menuProps} trigger={['click']}>
-                  <Button onClick={() => setSemesterId(item.key)}>Update</Button>
-                </Dropdown>
-              );
+                return (
+                    <Dropdown menu={menuProps} trigger={['click']}>
+                        <Button onClick={() => setSemesterId(item.key)}>Update</Button>
+                    </Dropdown>
+                );
             },
-          },
-       
+        },
+
     ];
 
     return (
         <div>
-             <Table loading={isLoading} columns={columns} dataSource={tableInfo}  />
+            <Table loading={isLoading} columns={columns} dataSource={tableInfo} />
         </div>
     );
 };

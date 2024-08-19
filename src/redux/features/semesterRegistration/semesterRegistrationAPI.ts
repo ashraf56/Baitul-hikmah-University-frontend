@@ -7,27 +7,27 @@ const semesterRegistrationAPi = baseapi.injectEndpoints({
     endpoints: (build) => ({
         getRegisteredsemester: build.query({
             query: (args) => {
-               const params=new URLSearchParams()
+                const params = new URLSearchParams()
 
 
-               if (args) {
-                args.forEach((element:TQueryParam) => {
-                    params.append(element.name,element.value as string)
-                });
-               }
-             
-               return   {
-                url: '/semister-reg',
-                method: "GET",
-                params:params
-            } 
-            }
-        ,
-            transformResponse:(response:TResponseRedux<any>)=>{
-              
+                if (args) {
+                    args.forEach((element: TQueryParam) => {
+                        params.append(element.name, element.value as string)
+                    });
+                }
+
                 return {
-                    data:response.data,
-                    meta:response.meta
+                    url: '/semister-reg',
+                    method: "GET",
+                    params: params
+                }
+            }
+            ,
+            transformResponse: (response: TResponseRedux<any>) => {
+
+                return {
+                    data: response.data,
+                    meta: response.meta
                 }
             }
         }),
@@ -37,11 +37,23 @@ const semesterRegistrationAPi = baseapi.injectEndpoints({
                 method: "POST",
                 body: data
             })
-        })
+        }),
+        updateRegisteredSemester: build.mutation({
+            query: (args) => ({
+                url: `/semister-reg/${args.id}`,
+                method: 'PATCH',
+                body: args.data,
+            }),
+
+        }),
     }),
+
 })
 
 
 
 
-export const {useAddSemeterRegistrationMutation,useGetRegisteredsemesterQuery} = semesterRegistrationAPi
+export const {
+    useAddSemeterRegistrationMutation,
+    useGetRegisteredsemesterQuery,
+    useUpdateRegisteredSemesterMutation } = semesterRegistrationAPi
