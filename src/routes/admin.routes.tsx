@@ -9,6 +9,7 @@ import AllAcademicDepartment from "../page/admin/AcademicManegment/AcademicDepar
 import Students from "../page/admin/AcademicManegment/Usermanagment/Students";
 import Create_semester_registration from "../page/admin/CourseManagement/Create_semester_registration";
 import SemesterRegistration from "../page/admin/CourseManagement/SemesterRegistration";
+import Create_Course from "../page/admin/CourseManagement/Create_Course";
 
 
 
@@ -83,6 +84,11 @@ export const adminPaths = [
                 name: ' Semester Registration',
                 path: 'semester-registration',
                 element: <SemesterRegistration />,
+            },
+            {
+                name: 'Add Course',
+                path: 'add-course',
+                element: <Create_Course />,
             },
 
         ],

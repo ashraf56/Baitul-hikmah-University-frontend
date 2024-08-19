@@ -6,8 +6,9 @@ type TCustomSelectProps = {
     name: string;
     placeholder?:string;
     options?: { value: string; label: string; disabled?: boolean }[];
+    mode?: 'multiple' | undefined;
   };
-const CustomSelect = ({ label, name, options, placeholder }: TCustomSelectProps) => {
+const CustomSelect = ({ label, name, options, placeholder ,mode}: TCustomSelectProps) => {
     return (
         <div>
               <Controller
@@ -20,6 +21,7 @@ const CustomSelect = ({ label, name, options, placeholder }: TCustomSelectProps)
             placeholder={placeholder}
             options={options}
             size="large"
+            mode={mode}
           />
           {error && <small style={{ color: 'red' }}>{error.message}</small>}
         </Form.Item>

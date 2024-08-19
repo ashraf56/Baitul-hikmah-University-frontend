@@ -26,8 +26,8 @@ const items = [
 const SemesterRegistration = () => {
     const [semesterId, setSemesterId] = useState('');
     console.log(semesterId);
- const [updateRegisteredSemester] = useUpdateRegisteredSemesterMutation()
-    const { data:regSem, isLoading } = useGetRegisteredsemesterQuery(undefined)
+    const [updateRegisteredSemester] = useUpdateRegisteredSemesterMutation()
+    const { data: regSem, isLoading } = useGetRegisteredsemesterQuery(undefined)
 
     const tableInfo = regSem?.data?.map(({ _id, academicSemester, status, startDate, endDate }: any) => (
         {
@@ -41,14 +41,14 @@ const SemesterRegistration = () => {
 
     const handleStatusUpdate = (data) => {
         const updateData = {
-          id: semesterId,
-          data: {
-            status: data.key,
-          },
+            id: semesterId,
+            data: {
+                status: data.key,
+            },
         };
-    
+
         updateRegisteredSemester(updateData);
-      };
+    };
 
     const menuProps = {
         items,
