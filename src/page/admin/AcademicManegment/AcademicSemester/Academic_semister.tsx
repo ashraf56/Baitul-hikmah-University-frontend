@@ -1,6 +1,6 @@
 import { Table, TableColumnsType, TableProps } from "antd";
-import { useGetsemisterQuery } from "../../../redux/features/academicSemister/academicsemisterApi";
-import { TAcademicSemester, TQueryParam } from "../../../Types";
+import { useGetsemisterQuery } from "../../../../redux/features/academicSemister/academicsemisterApi";
+import { TAcademicSemester, TQueryParam } from "../../../../Types";
 import { useState } from "react";
 
 type Ttabledata = Pick<TAcademicSemester, 'name' | 'year' | 'startMonth' | 'endMonth'>

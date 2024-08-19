@@ -1,7 +1,7 @@
 import AdminDashboard from "../page/admin/AdminDashboard";
-import CreateStudent from "../page/admin/CreateStudent";
-import Academic_semister from "../page/admin/AcademicManegment/Academic_semister";
-import Create_Academic_semister from "../page/admin/AcademicManegment/Create_Academic_semister";
+import CreateStudent from "../page/admin/AcademicManegment/Usermanagment/CreateStudent";
+import Academic_semister from "../page/admin/AcademicManegment/AcademicSemester/Academic_semister";
+import Create_Academic_semister from "../page/admin/AcademicManegment/AcademicSemester/Create_Academic_semister";
 import All_AcademicFaculty from "../page/admin/AcademicManegment/AcademicFaculty/All_AcademicFaculty";
 import CreateAcademicFaculty from "../page/admin/AcademicManegment/AcademicFaculty/CreateAcademicFaculty";
 import CreateAdepartment from "../page/admin/AcademicManegment/AcademicDepartment/CreateAdepartment";
@@ -78,7 +78,7 @@ export const adminPaths = [
                 path: 'create-semester-registration',
                 element: <Create_semester_registration />,
             },
-            
+
         ],
     },
 ];

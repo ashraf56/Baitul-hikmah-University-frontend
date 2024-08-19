@@ -1,34 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Divider, Form, Input, Row } from "antd";
 import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
-import CustomForm from "../../components/form/CustomForm";
-import CustomInput from "../../components/form/CustomInput";
-import CustomSelect from "../../components/form/CustomSelect";
-import { genderOptions } from "../../constants/global";
-import { useGetsemisterQuery } from "../../redux/features/academicSemister/academicsemisterApi";
-import { useGetAllAcademicDepartmentQuery } from "../../redux/features/academicDepartment/academicDepartmentApi";
-import { useAddStudentMutation } from "../../redux/features/studentinfoAPi/studentApi";
+import CustomForm from "../../../../components/form/CustomForm";
+import CustomInput from "../../../../components/form/CustomInput";
+import CustomSelect from "../../../../components/form/CustomSelect";
+import { genderOptions } from "../../../../constants/global";
+import { useGetsemisterQuery } from "../../../../redux/features/academicSemister/academicsemisterApi";
+import { useGetAllAcademicDepartmentQuery } from "../../../../redux/features/academicDepartment/academicDepartmentApi";
+import { useAddStudentMutation } from "../../../../redux/features/studentinfoAPi/studentApi";
 import { toast } from "sonner";
 
 const CreateStudent = () => {
- const [AddStudent] = useAddStudentMutation()
+    const [AddStudent] = useAddStudentMutation()
 
-const {data:Asemester} = useGetsemisterQuery(undefined)
+    const { data: Asemester } = useGetsemisterQuery(undefined)
 
 
-const semesterOptions = Asemester?.data?.map((item) => ({
-    value: item._id,
-    label: `${item.name} ${item.year}`,
-  }));
+    const semesterOptions = Asemester?.data?.map((item) => ({
+        value: item._id,
+        label: `${item.name} ${item.year}`,
+    }));
 
-  const {data:Adep}= useGetAllAcademicDepartmentQuery(undefined)
+    const { data: Adep } = useGetAllAcademicDepartmentQuery(undefined)
 
-  const DepartmentOptions = Adep?.data?.map((item: { _id: any; name: any; }) => ({
-    value: item._id,
-    label: item.name
-  }));
+    const DepartmentOptions = Adep?.data?.map((item: { _id: any; name: any; }) => ({
+        value: item._id,
+        label: item.name
+    }));
 
-    const onSubmit: SubmitHandler<FieldValues> =  async(data) => {
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 
 
 
@@ -37,21 +37,21 @@ const semesterOptions = Asemester?.data?.map((item) => ({
             password: 'student123',
             student: data,
         };
-   const formData = new FormData();
-  formData.append('data', JSON.stringify(studentData));
+        const formData = new FormData();
+        formData.append('data', JSON.stringify(studentData));
         formData.append('file', data.profileImg);
-  const toastLoder = toast.loading('creating....')
+        const toastLoder = toast.loading('creating....')
         try {
-          const res = await AddStudent(formData) 
-          if (res) {
-            toast.success('Student created successFully',{id:toastLoder})
-          }  
+            const res = await AddStudent(formData)
+            if (res) {
+                toast.success('Student created successFully', { id: toastLoder })
+            }
         } catch (error) {
-            toast.error(`${error}`,{id:toastLoder})
+            toast.error(`${error}`, { id: toastLoder })
         }
-        
 
-    
+
+
 
     }
     return (
@@ -85,10 +85,10 @@ const semesterOptions = Asemester?.data?.map((item) => ({
                                     name="profileImg"
                                     render={({ field: { onChange, value, ...field } }) => (
                                         <Form.Item label='Picture'>
-                                            <Input type="file" 
-                                            value={value?.fileName}
-                                             {...field} 
-                                             onChange={(e) => onChange(e.target.files?.[0])} />
+                                            <Input type="file"
+                                                value={value?.fileName}
+                                                {...field}
+                                                onChange={(e) => onChange(e.target.files?.[0])} />
                                         </Form.Item>
                                     )}
                                 />
@@ -107,11 +107,11 @@ const semesterOptions = Asemester?.data?.map((item) => ({
                         <Divider>Academic Info </Divider>
                         <Row gutter={8}>
                             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                            <CustomSelect label="Admission Semester" name="admissionSemester" 
-                            options={semesterOptions} placeholder="Select Admission Semester" ></CustomSelect>
+                                <CustomSelect label="Admission Semester" name="admissionSemester"
+                                    options={semesterOptions} placeholder="Select Admission Semester" ></CustomSelect>
                             </Col>
                             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                            <CustomSelect label="Academic Department" name="academicDepartment" options={DepartmentOptions} placeholder="Select academicDepartment" ></CustomSelect>
+                                <CustomSelect label="Academic Department" name="academicDepartment" options={DepartmentOptions} placeholder="Select academicDepartment" ></CustomSelect>
                             </Col>
                         </Row>
                         <Button htmlType="submit">Submit</Button>

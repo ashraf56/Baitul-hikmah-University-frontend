@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Flex } from "antd";
-import CustomForm from "../../../components/form/CustomForm";
+import CustomForm from "../../../../components/form/CustomForm";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import CustomSelect from "../../../components/form/CustomSelect";
-import { monthOptions } from "../../../constants/global";
+import CustomSelect from "../../../../components/form/CustomSelect";
+import { monthOptions } from "../../../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { academicSemesterSchema } from "../../../schemas/academicSemisterZod";
-import { useCreateAsemisterMutation } from "../../../redux/features/academicSemister/academicsemisterApi";
+import { academicSemesterSchema } from "../../../../schemas/academicSemisterZod";
+import { useCreateAsemisterMutation } from "../../../../redux/features/academicSemister/academicsemisterApi";
 import { toast } from "sonner";
-import { TResponse } from "../../../Types";
+import { TResponse } from "../../../../Types";
 
 export const semesterOptions = [
     { value: '01', label: 'Autumn' },

@@ -16,7 +16,11 @@ export const monthNames = [
 
   export const genders = ['male', 'female'];
 
-
+  export const semesterStatusOptions = [
+    { value: 'UPCOMING', label: 'Upcoming' },
+    { value: 'ONGOING', label: 'Ongoing' },
+    { value: 'ENDED', label: 'Ended' },
+  ];
   
   export const monthOptions = monthNames.map((item) => ({
     value: item,
