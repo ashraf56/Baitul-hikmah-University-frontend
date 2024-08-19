@@ -50,7 +50,7 @@ const semesterOptions = Asemester?.data?.map((item) => ({
     return (
         <div>
               <Flex justify="center" align="center">
-                <Col span={6}>
+                <Col span={8}>
                     <CustomForm
                         onSubmit={onSubmit}  >
                         <CustomSelect placeholder='Select semister' label="Academic Semester" name="academicSemester" options={semesterOptions} />
