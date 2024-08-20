@@ -23,6 +23,7 @@ const courseApi = baseapi.injectEndpoints({
                 }
             }
             ,
+            providesTags:['courses'],
             transformResponse: (response: TResponseRedux<any>) => {
 
                 return {
@@ -37,6 +38,8 @@ const courseApi = baseapi.injectEndpoints({
                 method: "POST",
                 body: data
             })
+            ,
+            invalidatesTags:['courses']
         }),
       
     }),
