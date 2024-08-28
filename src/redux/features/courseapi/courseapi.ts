@@ -41,7 +41,14 @@ const courseApi = baseapi.injectEndpoints({
             ,
             invalidatesTags:['courses']
         }),
-      
+      addAsignFaculties: build.mutation({
+        query:(args)=>({
+        url:`course/${args.id}/assign-course`,
+        method:"PUT",
+        body:args.data
+        }),
+        invalidatesTags:['courses']
+      })
     }),
 
 })
@@ -50,4 +57,4 @@ const courseApi = baseapi.injectEndpoints({
 
 
 export const {
- useAddCourseMutation, useGetCourseQuery } = courseApi
+ useAddCourseMutation, useGetCourseQuery,useAddAsignFacultiesMutation } = courseApi

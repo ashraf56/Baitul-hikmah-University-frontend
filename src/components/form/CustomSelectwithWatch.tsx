@@ -1,5 +1,5 @@
 import { Form, Select } from 'antd';
-import { Controller } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 type TCustomSelectProps = {
   label: string;
@@ -8,8 +8,14 @@ type TCustomSelectProps = {
   options?: { value: string; label: string; disabled?: boolean }[];
   mode?: 'multiple' | undefined;
 };
-const CustomSelect = ({ label, name, options, placeholder, mode }: TCustomSelectProps) => {
- 
+const CustomSelectwithWatch = ({ label, name, options, placeholder, mode }: TCustomSelectProps) => {
+  const { control } = useFormContext()
+  const inputValue = useWatch({
+    control,
+    name
+  })
+  console.log(inputValue);
+  
   return (
     <div>
       <Controller
@@ -32,4 +38,4 @@ const CustomSelect = ({ label, name, options, placeholder, mode }: TCustomSelect
   );
 };
 
-export default CustomSelect;
+export default CustomSelectwithWatch;
